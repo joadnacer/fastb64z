@@ -31,6 +31,8 @@ time=    119.73us test=fastb64-decode-fast
 ```
 
 # Usage
+Current master is written in Zig 0.12.0-dev.3522+b88ae8dbd. The library can be used as follows:
+
 Create a build.zig.zon file like this:
 ```zig
 .{
@@ -39,8 +41,8 @@ Create a build.zig.zon file like this:
 
     .dependencies = .{
         .fastb64z = .{
-            .url = "https://github.com/joadnacer/fastb64z/archive/main.tar.gz",
-            .hash = "<hash-here>" },
+            .url = "https://github.com/joadnacer/fastb64z/archive/17f00616b661efa6e02065c4c9a0e7b4682e0a16.tar.gz",
+            .hash = "1220e16c6b41749367d8663ba8acc356fdafce8b0fef40edb59ce0525e0683392eda" },
     },
 }
 ```
@@ -52,7 +54,7 @@ const fastb64z = b.dependency("fastb64z", .{
 .optimize = optimize,
 });
 
-exe.addModule("fastb64z", fastb64z.module("fastb64z"));
+exe.root_module.addImport("fastb64z", fastb64z.module("fastb64z"));
 ```
 
 Use as follows:
