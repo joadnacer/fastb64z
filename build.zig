@@ -5,13 +5,11 @@ pub fn build(b: *std.Build) void {
 
     const optimize = b.standardOptimizeOption(.{});
 
-    _ = b.addModule("fastb64z", .{ .root_source_file = .{
-        .path = "src/fastb64.zig",
-    } });
+    _ = b.addModule("fastb64z", .{ .root_source_file = b.path("src/fastb64.zig") });
 
     const lib = b.addStaticLibrary(.{
         .name = "fastb64z",
-        .root_source_file = .{ .path = "src/fastb64.zig" },
+        .root_source_file = b.path("src/fastb64.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -19,7 +17,7 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(lib);
 
     const lib_unit_tests = b.addTest(.{
-        .root_source_file = .{ .path = "src/fastb64.zig" },
+        .root_source_file = b.path("src/fastb64.zig"),
         .target = target,
         .optimize = optimize,
     });
